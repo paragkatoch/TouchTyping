@@ -13,7 +13,9 @@ export default function Home() {
 
 			<main className={styles.content_container}>
 				<section className={styles.reading_content}>
-					<h1 className={styles.heading}>Hello and Welcome 👋</h1>
+					<h1 className={styles.heading}>
+						Hello and Welcome <span>👋</span>
+					</h1>
 
 					<p className={styles.desc}>
 						Introducing a simple keyboard trainer for enhancing your touch

@@ -8,8 +8,8 @@
 	flex-direction: column;
 	width: fit-content;
 
-	padding: 6px;
-	padding-bottom: 10px;
+	padding: 0.5em;
+	padding-bottom: 0.6em;
 
 	background: linear-gradient(
 			180deg,
@@ -19,6 +19,8 @@
 		#626166;
 	box-shadow: 0px 2px 0px #191a1f;
 	border-radius: 12px;
+
+	width: 784px;
 }
 
 .blueish {
