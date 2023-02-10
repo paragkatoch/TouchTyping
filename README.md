@@ -2,11 +2,11 @@
 
 Introducing a simple keyboard trainer for enhancing your touch typing skills.
 
-![Site Preview](./src/assets/home.png)
+![Site Preview](./src/assets/Home.png)
 
 # Todo
 
-- [ ] Home Page
+- [x] Home Page
 - [ ] Profile Page
 - [ ] Trainer Page
 - [ ] Result
