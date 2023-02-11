@@ -1,0 +1,36 @@
+.keyboardButton {
+	padding: 0.75rem 1.5rem;
+	color: #e5e5e5;
+
+	display: flex;
+
+	border-radius: 6px;
+	border: 1px solid rgba(255, 255, 255, 0.32);
+	background-color: rgba(255, 255, 255, 0.01);
+
+	font-size: 1rem;
+	letter-spacing: 0.05em;
+	font-weight: 600;
+
+	cursor: pointer;
+
+	.key {
+		display: block;
+		margin-right: 1rem;
+		padding: 0 5px;
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		border-radius: 2px;
+
+		p {
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 22px;
+
+			color: rgba(255, 255, 255, 0.56);
+		}
+	}
+
+	&:hover {
+		box-shadow: 0px 4px 12px 4px rgba(255, 255, 255, 0.02);
+	}
+}

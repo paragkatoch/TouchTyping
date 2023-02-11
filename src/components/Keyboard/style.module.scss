@@ -75,6 +75,17 @@
 	width: 3.5em;
 }
 
+.keyboard__row > div[data-press-correct="true"] {
+	background-color: green !important;
+}
+.keyboard__row > div[data-press-correct="false"] {
+	background-color: red !important;
+}
+
+.keyboard__row > div[data-press-next] {
+	background-color: blue !important;
+}
+
 .keyboard__row > div[data-pressed],
 .keyboard__row > div:active {
 	background: #2a2a2a;

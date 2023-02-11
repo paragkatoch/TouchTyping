@@ -1,0 +1,55 @@
+.text_section {
+	margin-top: 4rem;
+
+	.text_container {
+		padding: 2rem;
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		border-radius: 0.5rem;
+		background-color: rgba(255, 255, 255, 0.08);
+		width: 1024px;
+		margin: 0 auto;
+
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: 2rem;
+		column-gap: 0.1rem;
+
+		> div {
+			display: flex;
+			width: fit-content;
+			height: fit-content;
+			margin: 0;
+			padding: 0;
+			column-gap: 0.1rem;
+
+			div {
+				width: fit-content;
+				white-space: pre-wrap;
+				padding: 0 0 0.5rem 0;
+
+				p {
+					color: #e5e5e5;
+					font-size: 1.25rem;
+					letter-spacing: 0.005em;
+				}
+			}
+		}
+		.active {
+			border-bottom: 2px solid #e5e5e5;
+		}
+
+		.typed p {
+			color: rgba(255, 255, 255, 0.24);
+		}
+		.wrong p {
+			color: #971c1c;
+		}
+	}
+}
+
+.keyboard_container {
+	position: absolute;
+	bottom: 5rem;
+	left: 50%;
+	transform: translateX(-50%) scale(1.2);
+}

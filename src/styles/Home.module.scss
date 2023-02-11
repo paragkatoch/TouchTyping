@@ -6,15 +6,6 @@
 	background-color: #090710;
 	min-height: 100vh;
 
-	.header {
-		width: 100%;
-		height: fit-content;
-		padding: 1.5rem 2rem;
-
-		display: flex;
-		justify-content: center;
-	}
-
 	.content_container {
 		height: 100%;
 
@@ -23,10 +14,11 @@
 			flex-direction: column;
 			justify-content: center;
 			text-align: center;
+			padding-bottom: 400px;
 
 			width: fit-content;
 			margin: 0 auto;
-			margin-top: 160px;
+			margin-top: 120px;
 
 			color: #e5e5e5;
 
@@ -86,13 +78,15 @@
 
 			.keyboard_container {
 				// transform: rotateX(90deg);
-				transform: perspective(1000px) rotateX(90deg) translateY(100px);
+				transform: perspective(1000px) rotateX(90deg) translateY(100px)
+					scale(1.2);
 				animation: perspective_animation 1s 1s forwards ease-in-out;
 
 				transform-origin: bottom center;
 
 				-webkit-transform-style: preserve-3d;
 				transform-style: preserve-3d;
+
 				.blur {
 					position: absolute;
 					display: block;
@@ -160,6 +154,6 @@
 	}
 
 	100% {
-		transform: perspective(1000px) rotateX(0deg);
+		transform: perspective(1000px) rotateX(0deg) scale(1.2);
 	}
 }

@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import Keyboard from "@/components/Keyboard";
 import styles from "@/styles/Home.module.scss";
 import Image from "next/image";
@@ -7,9 +8,7 @@ import Blob from "../assets/blob.png";
 export default function Home() {
 	return (
 		<main className={styles.home_container}>
-			<header className={styles.header}>
-				<p className="logo">Touch-Typing</p>
-			</header>
+			<Header />
 
 			<main className={styles.content_container}>
 				<section className={styles.reading_content}>

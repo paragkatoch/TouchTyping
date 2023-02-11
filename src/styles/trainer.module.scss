@@ -1,0 +1,35 @@
+.page_container {
+	position: relative;
+	min-height: 100vh;
+	overflow-y: hidden;
+
+	.blob {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		transform: translateX(-106px) translateY(98px);
+		filter: blur(200px);
+		z-index: -1;
+	}
+
+	> header {
+		display: flex;
+		justify-content: space-between;
+		padding: 1rem 2rem;
+		align-items: center;
+
+		.timer {
+			border: 1px solid rgba(255, 255, 255, 0.32);
+			background-color: rgba(255, 255, 255, 0.01);
+			border-radius: 4px;
+			padding: 0.75rem 1rem;
+
+			p {
+				font-size: 1rem;
+				line-height: 1rem;
+				letter-spacing: 0.005em;
+				color: #e5e5e5;
+			}
+		}
+	}
+}
