@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import KeyboardButton from "@/components/KeyboardButton";
 import styles from "@/styles/Profile.module.scss";
 import { settings, testTypes } from "@/util";
+import Head from "next/head";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import Blob from "../assets/blob.png";
@@ -36,6 +37,10 @@ export default function Porfile() {
 
 	return (
 		<main className={styles.page_container}>
+			<Head>
+				<title>Profile: Touch Typing</title>
+			</Head>
+
 			{/* Header */}
 			<Header />
 

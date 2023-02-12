@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Keyboard from "@/components/Keyboard";
 import styles from "@/styles/Home.module.scss";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Blob from "../assets/blob.png";
@@ -8,6 +9,10 @@ import Blob from "../assets/blob.png";
 export default function Home() {
 	return (
 		<main className={styles.home_container}>
+			<Head>
+				<title>Touch Typing</title>
+			</Head>
+
 			{/* Header */}
 			<Header />
 

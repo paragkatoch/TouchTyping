@@ -19,6 +19,7 @@ import {
 	testTime,
 	testTypes,
 } from "@/util";
+import Head from "next/head";
 
 export default function Trainer() {
 	const dispatch = useAppDispatch();
@@ -92,6 +93,10 @@ export default function Trainer() {
 
 	return (
 		<main className={styles.page_container}>
+			<Head>
+				<title>Trainer: Touch Typing</title>
+			</Head>
+
 			{/* Header */}
 			<header>
 				<Link href="/" className="logo">

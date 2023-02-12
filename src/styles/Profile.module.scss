@@ -10,6 +10,7 @@
 		transform: translateX(-106px) translateY(98px);
 		filter: blur(200px);
 		z-index: -1;
+		user-select: none;
 	}
 }
 .content_container {
