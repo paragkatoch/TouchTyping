@@ -26,6 +26,18 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+
+		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+
+		transform: perspective(1000px) rotateX(80deg) translateZ(-1200px);
+		animation: perspective_animation 1s 0.2s forwards ease-out;
+
+		transform-origin: bottom center;
+
+		&:last-child {
+			animation-delay: 0.3s;
+		}
 	}
 
 	.content_wrapper {
@@ -86,5 +98,19 @@
 				}
 			}
 		}
+	}
+}
+
+@keyframes perspective_animation {
+	0% {
+		transform: perspective(1000px) rotateX(80deg) translateZ(-1200px);
+	}
+
+	60% {
+		transform: perspective(1000px) rotateX(80deg) translateZ(100px);
+	}
+
+	100% {
+		transform: perspective(1000px) rotateX(0deg) translateZ(0px);
 	}
 }

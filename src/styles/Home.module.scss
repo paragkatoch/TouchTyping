@@ -78,7 +78,7 @@
 			.keyboard_container {
 				transform: perspective(1000px) rotateX(90deg) translateY(100px)
 					scale(1.2);
-				animation: perspective_animation 1s 1s forwards ease-in-out;
+				animation: perspective_animation 1s 0.2s forwards ease-in-out;
 
 				transform-origin: bottom center;
 
@@ -106,7 +106,7 @@
 				bottom: 0;
 				left: 50%;
 				transform: translateX(-50%) translateY(56px) scale(1.5);
-				animation: spark 3s forwards ease-in-out;
+				animation: spark 2.5s forwards ease-in-out;
 				filter: blur(200px);
 			}
 		}
@@ -134,16 +134,16 @@
 		left: 50%;
 	}
 
-	50% {
+	100% {
 		transform: scale(2) translateX(-50%) translateY(56px);
 		filter: blur(100px);
 	}
 
-	100% {
-		filter: blur(200px);
+	// 100% {
+	// 	filter: blur(200px);
 
-		transform: scale(1) translateX(-50%) translateY(56px);
-	}
+	// 	transform: scale(1) translateX(-50%) translateY(56px);
+	// }
 }
 
 @keyframes perspective_animation {

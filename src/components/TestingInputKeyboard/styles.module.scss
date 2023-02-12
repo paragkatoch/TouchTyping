@@ -2,6 +2,14 @@
 	margin-top: 4rem;
 
 	.text_container {
+		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+
+		transform: perspective(1000px) rotateX(-90deg) scale(0, 0);
+		animation: perspective_animation 0.5s 0.2s forwards ease-out;
+
+		transform-origin: center center;
+
 		padding: 2rem;
 		border: 1px solid rgba(255, 255, 255, 0.16);
 		border-radius: 0.5rem;
@@ -52,4 +60,32 @@
 	bottom: 5rem;
 	left: 50%;
 	transform: translateX(-50%) scale(1.2);
+
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+	transform: perspective(1000px) rotateX(-90deg) scale(0, 0);
+	animation: slide-in 0.5s 0.2s forwards ease-out;
+
+	transform-origin: center center;
+}
+
+@keyframes perspective_animation {
+	0% {
+		transform: perspective(1000px) rotateX(-90deg);
+	}
+
+	100% {
+		transform: perspective(1000px) rotateX(0deg) translateZ(0px);
+	}
+}
+
+@keyframes slide-in {
+	0% {
+		transform: perspective(1000px) translateY(400px) translateX(-50%) scale(1.2);
+	}
+
+	100% {
+		transform: perspective(1000px) translateY(0px) translateX(-50%) scale(1.2);
+	}
 }
