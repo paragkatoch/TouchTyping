@@ -1,17 +1,26 @@
 import Header from "@/components/Header";
 import KeyboardButton from "@/components/KeyboardButton";
 import styles from "@/styles/Profile.module.scss";
+import { settings, testTypes } from "@/util";
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Blob from "../assets/blob.png";
 
+type trainerSettings = {
+	testType: typeof testTypes[keyof typeof testTypes];
+	keyboardType: string;
+	language: string;
+};
+
 export default function Porfile() {
-	const [trainerSettings, setTrainerSettings] = useState({
-		testType: "Time based",
+	// defualt test settings
+	const [trainerSettings, setTrainerSettings] = useState<trainerSettings>({
+		testType: testTypes.timeBased,
 		keyboardType: "QWERTY",
 		language: "English",
 	});
 
+	// store settings to localstorage and redirect to trainer page
 	function handleStart() {
 		if (window) {
 			Object.keys(trainerSettings).forEach((item) => {
@@ -27,10 +36,13 @@ export default function Porfile() {
 
 	return (
 		<main className={styles.page_container}>
+			{/* Header */}
 			<Header />
 
+			{/* Options */}
 			<main className={styles.content_container}>
 				{settings.map((setting, key) => (
+					// Setting Item
 					<section
 						key={key}
 						className={`${styles.container_item} background_container`}
@@ -45,29 +57,15 @@ export default function Porfile() {
 
 										<section className={styles.options}>
 											{item.options.map((option, key) => (
-												<span
+												<SettingOption
 													key={key}
-													title={option.disabled ? "disabled" : ""}
-													onClick={() => {
-														if (!option.disabled) {
-															setTrainerSettings((prev) => ({
-																...prev,
-																[item.id]: option.name,
-															}));
-														}
+													{...{
+														option,
+														setTrainerSettings,
+														trainerSettings,
+														id: item.id,
 													}}
-													className={[
-														styles.option,
-														option.disabled ? styles.disabled : "",
-														trainerSettings[
-															item.id as keyof typeof trainerSettings
-														] === option.name
-															? styles.active
-															: "",
-													].join(" ")}
-												>
-													<p>{option.name}</p>
-												</span>
+												/>
 											))}
 										</section>
 									</section>
@@ -75,16 +73,10 @@ export default function Porfile() {
 							</section>
 						</section>
 
-						{setting.title === "Trainer" ? (
+						{setting.title === "Trainer" && (
 							<section className={styles.actions}>
-								<KeyboardButton
-									shortcutKey="Enter"
-									text="Start"
-									onClick={handleStart}
-								/>
+								<KeyboardButton text="Start" onClick={handleStart} />
 							</section>
-						) : (
-							<></>
 						)}
 					</section>
 				))}
@@ -95,42 +87,39 @@ export default function Porfile() {
 	);
 }
 
-const settings = [
-	{
-		title: "Trainer",
-		items: [
-			{
-				id: "testType",
-				title: "Select the type of test you want to take",
-				options: [
-					{ disabled: false, name: "Time based" },
-					{ disabled: false, name: "Paragraph based" },
-				],
-			},
-		],
-	},
-	{
-		title: "Configuration",
-		items: [
-			{
-				id: "keyboardType",
-				title: "Keyboard Type",
-				options: [
-					{ disabled: false, name: "QWERTY" },
-					{ disabled: true, name: "DVORAK" },
-					{ disabled: true, name: "COLEMAK" },
-				],
-			},
+type settingOptionProps = {
+	id: string;
+	option: { disabled: boolean; name: string };
+	setTrainerSettings: Dispatch<SetStateAction<trainerSettings>>;
+	trainerSettings: trainerSettings;
+};
 
-			{
-				id: "language",
-				title: "Language",
-				options: [
-					{ disabled: false, name: "English" },
-					{ disabled: true, name: "Hindi" },
-					{ disabled: true, name: "French" },
-				],
-			},
-		],
-	},
-];
+function SettingOption({
+	id,
+	option,
+	setTrainerSettings,
+	trainerSettings,
+}: settingOptionProps) {
+	return (
+		<span
+			title={option.disabled ? "disabled" : ""}
+			onClick={() => {
+				if (!option.disabled) {
+					setTrainerSettings((prev) => ({
+						...prev,
+						[id]: option.name,
+					}));
+				}
+			}}
+			className={[
+				styles.option,
+				option.disabled ? styles.disabled : "",
+				trainerSettings[id as keyof typeof trainerSettings] === option.name
+					? styles.active
+					: "",
+			].join(" ")}
+		>
+			<p>{option.name}</p>
+		</span>
+	);
+}

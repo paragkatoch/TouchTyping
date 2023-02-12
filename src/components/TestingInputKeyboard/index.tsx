@@ -14,6 +14,9 @@ import { useEffect, useState } from "react";
 import Keyboard from "../Keyboard";
 import styles from "./styles.module.scss";
 
+/**
+ * Component to handle input box, keyboard and keypress in a test
+ */
 export default function TestingInputKeyboard() {
 	const dispatch = useAppDispatch();
 	const { timedTest, testState } = useAppSelector(
@@ -24,7 +27,7 @@ export default function TestingInputKeyboard() {
 	const [testString, setTestString] = useState<testString[]>([]);
 	// cursor position
 	const [currentIndex, setCurrentIndex] = useState(0);
-	// wrong typed characters index
+	// array of wrong typed characters index
 	const [errorIndex, setErrorIndex] = useState<number[]>([]);
 
 	// generate initial test string and end test if necessary
@@ -47,7 +50,8 @@ export default function TestingInputKeyboard() {
 			dispatch(
 				TrainerAction.incrementFinalData({
 					errorLength: errorIndex.length,
-					testStringLength: testString.length,
+					// since its a timed test, increment would be total characters typed in current iteration
+					testStringLength: Math.min(currentIndex, maxTextLength),
 				})
 			);
 
@@ -61,6 +65,7 @@ export default function TestingInputKeyboard() {
 
 	// highlight the next key to be pressed
 	useEffect(() => {
+		// if the test is running and cursor is not at the end
 		if (
 			testState === testStates.running &&
 			currentIndex < maxTextLength &&

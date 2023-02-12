@@ -1,54 +1,8 @@
 import styles from "./style.module.scss";
+
 export default function Keyboard({ bluish = false }) {
 	return (
 		<div className={[styles.keyboard, bluish ? styles.blueish : ""].join(" ")}>
-			{/* <div
-				className={[styles.keyboard__row, styles.keyboard__row__h1].join(" ")}
-			>
-				<div data-key="27" className={styles.key__word}>
-					<span>esc</span>
-				</div>
-				<div data-key="112" className={styles.key__fn}>
-					<span>F1</span>
-				</div>
-				<div data-key="113" className={styles.key__fn}>
-					<span>F2</span>
-				</div>
-				<div data-key="114" className={styles.key__fn}>
-					<span>F3</span>
-				</div>
-				<div data-key="115" className={styles.key__fn}>
-					<span>F4</span>
-				</div>
-				<div data-key="116" className={styles.key__fn}>
-					<span>F5</span>
-				</div>
-				<div data-key="117" className={styles.key__fn}>
-					<span>F6</span>
-				</div>
-				<div data-key="118" className={styles.key__fn}>
-					<span>F7</span>
-				</div>
-				<div data-key="119" className={styles.key__fn}>
-					<span>F8</span>
-				</div>
-				<div data-key="120" className={styles.key__fn}>
-					<span>F9</span>
-				</div>
-				<div data-key="121" className={styles.key__fn}>
-					<span>F10</span>
-				</div>
-				<div data-key="122" className={styles.key__fn}>
-					<span>F11</span>
-				</div>
-				<div data-key="123" className={styles.key__fn}>
-					<span>F12</span>
-				</div>
-				<div data-key="n/a" className={styles.key__word}>
-					<span>pwr</span>
-				</div>
-			</div> */}
-
 			<div className={styles.keyboard__row}>
 				<div className={styles.key__double} data-key="192">
 					<div>~</div>

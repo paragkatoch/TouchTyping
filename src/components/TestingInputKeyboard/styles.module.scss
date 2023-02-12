@@ -28,14 +28,14 @@
 				padding: 0 0 0.5rem 0;
 
 				p {
-					color: #e5e5e5;
+					color: var(--primary-color);
 					font-size: 1.25rem;
 					letter-spacing: 0.005em;
 				}
 			}
 		}
 		.active {
-			border-bottom: 2px solid #e5e5e5;
+			border-bottom: 2px solid var(--primary-color);
 		}
 
 		.typed p {

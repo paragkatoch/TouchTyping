@@ -8,9 +8,11 @@ import Blob from "../assets/blob.png";
 export default function Home() {
 	return (
 		<main className={styles.home_container}>
+			{/* Header */}
 			<Header />
 
 			<main className={styles.content_container}>
+				{/* Welcome */}
 				<section className={styles.reading_content}>
 					<h1 className={styles.heading}>
 						Hello and Welcome <span>👋</span>
@@ -24,6 +26,8 @@ export default function Home() {
 
 					<Link href="/profile">Try it out</Link>
 				</section>
+
+				{/* Keyboard and blob */}
 				<section className={styles.keyboard}>
 					<Image src={Blob} alt="" className={styles.blob} />
 					<section className={styles.keyboard_container}>

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
+import { pages } from "@/util";
 
 const openSans = Open_Sans({
 	weight: ["400", "500", "600"],
@@ -24,10 +25,11 @@ export default function App({ Component, pageProps }: AppProps) {
 	);
 }
 
+// wrap redux provider on trainer page
 function WrapWithProvider({ children }: { children: ReactNode }) {
 	const { route } = useRouter();
 
-	return route.startsWith("/trainer") ? (
+	return route.startsWith(pages.trainer) ? (
 		<Provider store={store}>{children}</Provider>
 	) : (
 		<>{children}</>

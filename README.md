@@ -37,7 +37,7 @@ Introducing a simple keyboard trainer for enhancing your touch typing skills.
 - [x] Result
 - [x] Redux Store
 - [ ] Animations
-- [ ] Documentation
+- [x] Documentation
 - [ ] Responsiveness
 - [ ] Final Checks
 
