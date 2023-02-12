@@ -39,7 +39,7 @@ Introducing a simple keyboard trainer for enhancing your touch typing skills.
 - [x] Animations
 - [x] Documentation
 - [ ] Responsiveness
-- [ ] Final Checks
+- [x] Final Checks
 
 ## Technologies
 

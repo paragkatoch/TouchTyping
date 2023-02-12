@@ -177,7 +177,6 @@ export function getKey(e: KeyboardEvent) {
 	let location = e.location;
 	let selector;
 
-	// Todo: try to remove this
 	// check if the key was on the right side
 	if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
 		selector = ['[data-key="' + e.keyCode + '-R"]'];
@@ -216,5 +215,5 @@ export function convertTime(time: number) {
 	const minutes = Math.floor(leftTime / 60);
 	const seconds = leftTime % 60;
 
-	return `${minutes}:${seconds}${seconds < 10 ? "0" : ""}`;
+	return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }

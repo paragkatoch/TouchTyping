@@ -50,8 +50,7 @@ export default function TestingInputKeyboard() {
 			dispatch(
 				TrainerAction.incrementFinalData({
 					errorLength: errorIndex.length,
-					// since its a timed test, increment would be total characters typed in current iteration
-					testStringLength: Math.min(currentIndex, maxTextLength),
+					testStringLength: testString.length,
 				})
 			);
 
@@ -62,6 +61,20 @@ export default function TestingInputKeyboard() {
 			setErrorIndex([]);
 		}
 	}, [currentIndex, dispatch, errorIndex.length, testString.length, timedTest]);
+
+	// if timed test and test and been ended
+	// then, increment final data
+	useEffect(() => {
+		if (testState === "ended" && timedTest) {
+			dispatch(
+				TrainerAction.incrementFinalData({
+					errorLength: errorIndex.length,
+					// since its a timed test, increment would be total characters typed in last iteration
+					testStringLength: Math.min(currentIndex, maxTextLength),
+				})
+			);
+		}
+	}, [currentIndex, dispatch, errorIndex.length, testState, timedTest]);
 
 	// highlight the next key to be pressed
 	useEffect(() => {
