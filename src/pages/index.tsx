@@ -17,6 +17,9 @@ export default function Home() {
 			<Header />
 
 			<main className={styles.content_container}>
+				{/* Background Gradient blob */}
+				<Image src={Blob} alt="" className={styles.blob} />
+
 				{/* Welcome */}
 				<section className={styles.reading_content}>
 					<h1 className={styles.heading}>
@@ -34,7 +37,6 @@ export default function Home() {
 
 				{/* Keyboard and blob */}
 				<section className={styles.keyboard}>
-					<Image src={Blob} alt="" className={styles.blob} />
 					<section className={styles.keyboard_container}>
 						<span className={styles.blur}></span>
 						<Keyboard bluish={true} />

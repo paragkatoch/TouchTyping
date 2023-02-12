@@ -97,6 +97,8 @@ export default function Trainer() {
 				<title>Trainer: Touch Typing</title>
 			</Head>
 
+			<Image src={Blob} alt="" className={styles.blob} />
+
 			{/* Header */}
 			<header>
 				<Link href="/" className="logo">
@@ -133,8 +135,6 @@ export default function Trainer() {
 
 			{/* Result Section */}
 			{testState === testStates.ended ? <Result /> : <></>}
-
-			<Image src={Blob} alt="" className={styles.blob} />
 		</main>
 	);
 }

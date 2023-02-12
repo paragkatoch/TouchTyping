@@ -44,6 +44,8 @@ export default function Porfile() {
 			{/* Header */}
 			<Header />
 
+			<Image src={Blob} alt="" className={styles.blob} />
+
 			{/* Options */}
 			<main className={styles.content_container}>
 				{settings.map((setting, key) => (
@@ -86,8 +88,6 @@ export default function Porfile() {
 					</section>
 				))}
 			</main>
-
-			<Image src={Blob} alt="" className={styles.blob} />
 		</main>
 	);
 }

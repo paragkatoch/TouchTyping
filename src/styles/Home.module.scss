@@ -100,22 +100,20 @@
 					z-index: 3;
 				}
 			}
-
-			.blob {
-				user-select: none;
-				position: absolute;
-				bottom: 0;
-				left: 50%;
-				transform: translateX(-50%) translateY(56px) scale(1.5);
-				animation: spark 2.5s forwards ease-in-out;
-				filter: blur(200px);
-
-				z-index: -1;
-			}
 		}
 	}
 }
 
+.blob {
+	user-select: none;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%) translateY(56px) scale(1.5);
+	animation: spark 2.5s forwards ease-in-out;
+	filter: blur(200px);
+	z-index: -1;
+}
 @keyframes wiggle {
 	0% {
 		transform: rotateZ(0deg);
