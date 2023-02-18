@@ -47,7 +47,7 @@ export default function Trainer() {
 
 	// increment timer if test is running
 	useEffect(() => {
-		let interval: null | NodeJS.Timer = null;
+		let interval = null;
 
 		if (testState === testStates.running) {
 			interval = setInterval(() => {
@@ -71,13 +71,13 @@ export default function Trainer() {
 
 	// start and pause the test based on keyboard shortcuts
 	useEffect(() => {
-		function handleKeyDown(event: KeyboardEvent) {
+		function handleKeyDown(keyEvent) {
 			// if test is running and 'Esc' key is pressed
-			if (testState === testStates.running && event.code === "Escape") {
+			if (testState === testStates.running && keyEvent.code === "Escape") {
 				dispatch(TrainerAction.pauseTest());
 			}
 			// if test is paused and 'Space' key is pressed
-			else if (testState === testStates.paused && event.code === "Space") {
+			else if (testState === testStates.paused && keyEvent.code === "Space") {
 				dispatch(TrainerAction.startTest());
 			}
 		}

@@ -61,7 +61,7 @@ export default function Result() {
 	);
 }
 
-function ResultListItem({ title, value }: { title: string; value: string }) {
+function ResultListItem({ title, value }) {
 	return (
 		<section className={styles.resultListItem}>
 			<p className={styles.title}>{title} -</p>

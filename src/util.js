@@ -1,12 +1,4 @@
 /**
- * types
- */
-
-export type testState = typeof testStates[keyof typeof testStates];
-export type testString = { character: string; index: number };
-export type finalData = { testStringLength: number; errorLength: number };
-
-/**
  * fixed data
  */
 
@@ -33,7 +25,7 @@ export const testStates = {
 	paused: "paused",
 	ended: "ended",
 	running: "running",
-} as const;
+};
 
 // pages in the application
 export const pages = {
@@ -90,8 +82,8 @@ export const settings = [
 // group character by spaces in between them
 // this is necessary to avoid words being split between 2 lines
 // eg: [['a','s','d',' '], ['s', 'k', 'l', ' '], []]
-export function groupByWord(s: testString[]) {
-	return s.reduce(
+export function groupByWord(testString) {
+	return testString.reduce(
 		(finalArray, item) => {
 			// if space then push and add new array to the finalArray
 			if (item.character === " ") {
@@ -110,7 +102,7 @@ export function groupByWord(s: testString[]) {
 				return finalArray;
 			}
 		},
-		[[]] as Array<Array<testString>>
+		[[]]
 	);
 }
 
@@ -124,7 +116,7 @@ export function generateChar() {
 }
 
 // return a random word of length 3-7
-export function generateWord(pos: number, maxLength: number) {
+export function generateWord(pos, maxLength) {
 	const wordArray = [];
 	// size of the word
 	const size = Math.min(Math.floor(Math.random() * 5) + 3, maxLength - pos);
@@ -138,9 +130,9 @@ export function generateWord(pos: number, maxLength: number) {
 }
 
 // return a random paragraph of specifed length
-export function generateTestString(maxLength: number) {
+export function generateTestString(maxLength) {
 	let length = 0;
-	let sentence: { character: string; index: number }[] = [];
+	let sentence = [];
 
 	while (length < maxLength) {
 		// generate word
@@ -159,9 +151,9 @@ export function generateTestString(maxLength: number) {
 }
 
 // return the element associated with the character
-export function getKeyOnChar(s: string) {
+export function getKeyOnChar(char) {
 	// get the key code
-	const code = s === ";" ? 186 : s.toUpperCase().charCodeAt(0);
+	const code = char === ";" ? 186 : char.toUpperCase().charCodeAt(0);
 
 	// return the element
 	const selector = [
@@ -169,20 +161,20 @@ export function getKeyOnChar(s: string) {
 		'[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
 	].join(",");
 
-	return document.querySelector(selector as keyof HTMLElementTagNameMap);
+	return document.querySelector(selector);
 }
 
 // return the element associated with the key pressed
-export function getKey(e: KeyboardEvent) {
-	let location = e.location;
+export function getKey(keyEvent) {
+	let location = keyEvent.location;
 	let selector;
 
 	// check if the key was on the right side
 	if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-		selector = ['[data-key="' + e.keyCode + '-R"]'];
+		selector = ['[data-key="' + keyEvent.keyCode + '-R"]'];
 	} else {
 		// get key code
-		var code = e.keyCode || e.which;
+		var code = keyEvent.keyCode || keyEvent.which;
 		selector = [
 			'[data-key="' + code + '"]',
 			'[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
@@ -190,13 +182,14 @@ export function getKey(e: KeyboardEvent) {
 	}
 
 	// select and return the element
-	return document.querySelector(selector as keyof HTMLElementTagNameMap);
+	return document.querySelector(selector);
 }
 
 // play the press key animation for a character
-export function pressKey(char: string) {
+export function pressKey(char) {
 	// get the element associated with the key
 	let key = document.querySelector('[data-char*="' + char.toUpperCase() + '"]');
+
 	if (!key) {
 		return console.warn("No key for", char);
 	} else {
@@ -210,7 +203,7 @@ export function pressKey(char: string) {
 }
 
 // covert remaing time to `MM:SS` format
-export function convertTime(time: number) {
+export function convertTime(time) {
 	const leftTime = testTime - time;
 	const minutes = Math.floor(leftTime / 60);
 	const seconds = leftTime % 60;

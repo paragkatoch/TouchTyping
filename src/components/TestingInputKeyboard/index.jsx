@@ -24,11 +24,11 @@ export default function TestingInputKeyboard() {
 	);
 
 	// test string for the user
-	const [testString, setTestString] = useState<testString[]>([]);
+	const [testString, setTestString] = useState([]);
 	// cursor position
 	const [currentIndex, setCurrentIndex] = useState(0);
 	// array of wrong typed characters index
-	const [errorIndex, setErrorIndex] = useState<number[]>([]);
+	const [errorIndex, setErrorIndex] = useState([]);
 
 	// generate initial test string and end test if necessary
 	useEffect(() => {
@@ -99,22 +99,22 @@ export default function TestingInputKeyboard() {
 	// handle key press i.e., key-down and key-up
 	useEffect(() => {
 		// hightlight correct and incorrect pressed keys and increment currentIndex
-		function handleKeyDown(event: KeyboardEvent) {
+		function handleKeyDown(keyEvent) {
 			// return if overflow
 			if (currentIndex >= maxTextLength || !testString[currentIndex]) return;
 
 			// get pressed key
-			const key = getKey(event);
+			const key = getKey(keyEvent);
 
 			if (!key) {
-				return console.warn("No key for", event.keyCode);
+				return console.warn("No key for", keyEvent.keyCode);
 			}
 
 			// play press animation on the key
-			pressKey(event.key);
+			pressKey(keyEvent.key);
 
 			// if wrong key is pressed then highlight it red
-			if (event.key !== testString[currentIndex].character) {
+			if (keyEvent.key !== testString[currentIndex].character) {
 				key.setAttribute("data-press-correct", "false");
 				setErrorIndex((prev) => [...prev, currentIndex]);
 			}
@@ -135,9 +135,9 @@ export default function TestingInputKeyboard() {
 		}
 
 		// remove attributes from pressed keys
-		function handleKeyUp(event: KeyboardEvent) {
+		function handleKeyUp(keyEvent) {
 			// get pressed key
-			let key = getKey(event);
+			let key = getKey(keyEvent);
 			// cleanup
 			key && key.removeAttribute("data-press-correct");
 			key && key.removeAttribute("data-pressed");

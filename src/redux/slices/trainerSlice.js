@@ -1,14 +1,7 @@
 import { finalData, testState } from "@/util";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type TrainerState = {
-	timedTest: boolean | null;
-	timer: number;
-	testState: testState;
-	finalData: finalData;
-};
-
-const initialState: TrainerState = {
+const initialState = {
 	// Is the test timed or not
 	timedTest: null,
 
@@ -33,7 +26,7 @@ const trainerSlice = createSlice({
 	initialState,
 	reducers: {
 		// set the timedTest state
-		setTimedTest(state, action: PayloadAction<boolean>) {
+		setTimedTest(state, action) {
 			state.timedTest = action.payload;
 		},
 
@@ -63,7 +56,7 @@ const trainerSlice = createSlice({
 		},
 
 		// added current data to finalData
-		incrementFinalData(state, action: PayloadAction<finalData>) {
+		incrementFinalData(state, action) {
 			state.finalData = {
 				testStringLength:
 					state.finalData.testStringLength + action.payload.testStringLength,

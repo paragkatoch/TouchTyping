@@ -4,18 +4,12 @@ import styles from "@/styles/Profile.module.scss";
 import { settings, testTypes } from "@/util";
 import Head from "next/head";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import Blob from "../assets/blob.png";
-
-type trainerSettings = {
-	testType: typeof testTypes[keyof typeof testTypes];
-	keyboardType: string;
-	language: string;
-};
 
 export default function Porfile() {
 	// defualt test settings
-	const [trainerSettings, setTrainerSettings] = useState<trainerSettings>({
+	const [trainerSettings, setTrainerSettings] = useState({
 		testType: testTypes.timeBased,
 		keyboardType: "QWERTY",
 		language: "English",
@@ -25,10 +19,7 @@ export default function Porfile() {
 	function handleStart() {
 		if (window) {
 			Object.keys(trainerSettings).forEach((item) => {
-				window.localStorage.setItem(
-					item,
-					trainerSettings[item as keyof typeof trainerSettings]
-				);
+				window.localStorage.setItem(item, trainerSettings[item]);
 			});
 
 			window.location.href = "/trainer";
@@ -92,19 +83,7 @@ export default function Porfile() {
 	);
 }
 
-type settingOptionProps = {
-	id: string;
-	option: { disabled: boolean; name: string };
-	setTrainerSettings: Dispatch<SetStateAction<trainerSettings>>;
-	trainerSettings: trainerSettings;
-};
-
-function SettingOption({
-	id,
-	option,
-	setTrainerSettings,
-	trainerSettings,
-}: settingOptionProps) {
+function SettingOption({ id, option, setTrainerSettings, trainerSettings }) {
 	return (
 		<span
 			title={option.disabled ? "disabled" : ""}
@@ -119,9 +98,7 @@ function SettingOption({
 			className={[
 				styles.option,
 				option.disabled ? styles.disabled : "",
-				trainerSettings[id as keyof typeof trainerSettings] === option.name
-					? styles.active
-					: "",
+				trainerSettings[id] === option.name ? styles.active : "",
 			].join(" ")}
 		>
 			<p>{option.name}</p>
