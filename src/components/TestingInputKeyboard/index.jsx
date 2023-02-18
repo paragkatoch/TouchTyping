@@ -160,19 +160,19 @@ export default function TestingInputKeyboard() {
 			<main className={styles.text_section}>
 				{/* Text Section */}
 				<section className={styles.text_container}>
-					{groupByWord(testString).map((item, key) => {
+					{groupByWord(testString).map((word, key) => {
 						return (
 							<div
-								key={item[0]?.index ?? key}
+								key={word[0]?.index ?? key}
 								className={
-									currentIndex >= item[0]?.index &&
-									currentIndex <= item[item.length - 1]?.index
+									currentIndex >= word[0]?.index &&
+									currentIndex <= word[word.length - 1]?.index
 										? styles.active
 										: ""
 								}
 							>
-								{item.map((item) => {
-									const { index, character } = item;
+								{word.map((char) => {
+									const { index, character } = char;
 
 									if (currentIndex > index) {
 										return (

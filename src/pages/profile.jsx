@@ -49,19 +49,19 @@ export default function Porfile() {
 							<h2>{setting.title}</h2>
 
 							<section className={styles.config}>
-								{setting.items.map((item, key) => (
+								{setting.items.map((settingItem, key) => (
 									<section className={styles.item} key={key}>
-										<p>{item.title}</p>
+										<p>{settingItem.title}</p>
 
 										<section className={styles.options}>
-											{item.options.map((option, key) => (
+											{settingItem.options.map((option, key) => (
 												<SettingOption
 													key={key}
 													{...{
 														option,
 														setTrainerSettings,
 														trainerSettings,
-														id: item.id,
+														id: settingItem.id,
 													}}
 												/>
 											))}

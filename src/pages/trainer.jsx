@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 
 import KeyboardButton from "@/components/KeyboardButton";
 import TestingInputKeyboard from "@/components/TestingInputKeyboard";
@@ -11,15 +12,14 @@ import { TrainerAction } from "@/redux/slices/trainerSlice";
 
 import styles from "@/styles/trainer.module.scss";
 import Blob from "../assets/blob.png";
+import { convertTime } from "@/lib/helperFunctions";
 import {
-	convertTime,
 	localStorageVarNames,
 	pages,
 	testStates,
 	testTime,
 	testTypes,
 } from "@/lib/util";
-import Head from "next/head";
 
 export default function Trainer() {
 	const dispatch = useAppDispatch();

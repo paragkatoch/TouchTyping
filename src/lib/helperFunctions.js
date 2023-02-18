@@ -1,4 +1,4 @@
-import { charMap } from "./util";
+import { charMap, testTime } from "./util";
 
 /**
  * helper functions
