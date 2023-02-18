@@ -1,15 +1,13 @@
 import { TrainerAction } from "@/redux/slices/trainerSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { maxParagraphLength, testStates } from "@/lib/util";
 import {
 	generateTestString,
 	getKey,
 	getKeyOnChar,
 	groupByWord,
-	maxTextLength,
 	pressKey,
-	testStates,
-	testString,
-} from "@/util";
+} from "@/lib/helperFunctions";
 import { useEffect, useState } from "react";
 import Keyboard from "../Keyboard";
 import styles from "./styles.module.scss";
@@ -33,7 +31,7 @@ export default function TestingInputKeyboard() {
 	// generate initial test string and end test if necessary
 	useEffect(() => {
 		// if test is paragraph based and user has typed whole paragraph
-		if (!timedTest && currentIndex >= maxTextLength) {
+		if (!timedTest && currentIndex >= maxParagraphLength) {
 			// set finalData and end the test
 			dispatch(
 				TrainerAction.incrementFinalData({
@@ -45,7 +43,7 @@ export default function TestingInputKeyboard() {
 			dispatch(TrainerAction.endTest());
 		}
 		// if test is time based and test string is not generated yet or user has typed the intial string
-		else if (testString.length === 0 || currentIndex >= maxTextLength) {
+		else if (testString.length === 0 || currentIndex >= maxParagraphLength) {
 			// set form data, regenerate/reset values of test string, currentIndex and errorIndex
 			dispatch(
 				TrainerAction.incrementFinalData({
@@ -54,7 +52,7 @@ export default function TestingInputKeyboard() {
 				})
 			);
 
-			const newTestString = generateTestString(maxTextLength);
+			const newTestString = generateTestString(maxParagraphLength);
 
 			setTestString(newTestString);
 			setCurrentIndex(0);
@@ -70,7 +68,7 @@ export default function TestingInputKeyboard() {
 				TrainerAction.incrementFinalData({
 					errorLength: errorIndex.length,
 					// since its a timed test, increment would be total characters typed in last iteration
-					testStringLength: Math.min(currentIndex, maxTextLength),
+					testStringLength: Math.min(currentIndex, maxParagraphLength),
 				})
 			);
 		}
@@ -81,7 +79,7 @@ export default function TestingInputKeyboard() {
 		// if the test is running and cursor is not at the end
 		if (
 			testState === testStates.running &&
-			currentIndex < maxTextLength &&
+			currentIndex < maxParagraphLength &&
 			testString[currentIndex]
 		) {
 			// get nextKey
@@ -101,7 +99,8 @@ export default function TestingInputKeyboard() {
 		// hightlight correct and incorrect pressed keys and increment currentIndex
 		function handleKeyDown(keyEvent) {
 			// return if overflow
-			if (currentIndex >= maxTextLength || !testString[currentIndex]) return;
+			if (currentIndex >= maxParagraphLength || !testString[currentIndex])
+				return;
 
 			// get pressed key
 			const key = getKey(keyEvent);
@@ -163,7 +162,15 @@ export default function TestingInputKeyboard() {
 				<section className={styles.text_container}>
 					{groupByWord(testString).map((item, key) => {
 						return (
-							<div key={item[0]?.index ?? key}>
+							<div
+								key={item[0]?.index ?? key}
+								className={
+									currentIndex >= item[0]?.index &&
+									currentIndex <= item[item.length - 1]?.index
+										? styles.active
+										: ""
+								}
+							>
 								{item.map((item) => {
 									const { index, character } = item;
 
@@ -182,10 +189,7 @@ export default function TestingInputKeyboard() {
 									}
 
 									return (
-										<div
-											key={index}
-											className={currentIndex === index ? styles.active : ""}
-										>
+										<div key={index}>
 											<p>{character}</p>
 										</div>
 									);

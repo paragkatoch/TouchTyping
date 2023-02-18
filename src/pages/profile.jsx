@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import KeyboardButton from "@/components/KeyboardButton";
 import styles from "@/styles/Profile.module.scss";
-import { settings, testTypes } from "@/util";
+import { settings, testTypes } from "@/lib/util";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";

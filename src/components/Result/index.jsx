@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/redux/store";
-import { pages } from "@/util";
+import { pages } from "@/lib/util";
 import KeyboardButton from "../KeyboardButton";
 import styles from "./styles.module.scss";
 

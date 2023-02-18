@@ -13,12 +13,12 @@ import styles from "@/styles/trainer.module.scss";
 import Blob from "../assets/blob.png";
 import {
 	convertTime,
-	localStorageNames,
+	localStorageVarNames,
 	pages,
 	testStates,
 	testTime,
 	testTypes,
-} from "@/util";
+} from "@/lib/util";
 import Head from "next/head";
 
 export default function Trainer() {
@@ -31,7 +31,7 @@ export default function Trainer() {
 	// if not present then redirect to profile page
 	useEffect(() => {
 		// get test type
-		const testType = window.localStorage.getItem(localStorageNames.testType);
+		const testType = window.localStorage.getItem(localStorageVarNames.testType);
 
 		// if invalid redirect to profile page
 		if (

@@ -1,4 +1,4 @@
-import { finalData, testState } from "@/util";
+import { finalData, testState } from "@/lib/util";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {

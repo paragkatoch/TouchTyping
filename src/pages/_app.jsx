@@ -3,7 +3,7 @@ import { Open_Sans } from "@next/font/google";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
-import { pages } from "@/util";
+import { pages } from "@/lib/util";
 
 const openSans = Open_Sans({
 	weight: ["400", "500", "600"],
