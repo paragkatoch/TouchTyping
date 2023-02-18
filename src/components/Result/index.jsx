@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/redux/store";
-import { pages } from "@/util";
+import { pages } from "@/lib/util";
 import KeyboardButton from "../KeyboardButton";
 import styles from "./styles.module.scss";
 
@@ -61,7 +61,7 @@ export default function Result() {
 	);
 }
 
-function ResultListItem({ title, value }: { title: string; value: string }) {
+function ResultListItem({ title, value }) {
 	return (
 		<section className={styles.resultListItem}>
 			<p className={styles.title}>{title} -</p>
