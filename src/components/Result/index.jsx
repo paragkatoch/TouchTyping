@@ -2,9 +2,39 @@ import { useAppSelector } from "@/redux/store";
 import { pages } from "@/lib/util";
 import KeyboardButton from "../KeyboardButton";
 import styles from "./styles.module.scss";
+import { useEffect } from "react";
 
 export default function Result() {
 	const { timer, finalData } = useAppSelector((state) => state.trainerSlice);
+
+	useEffect(() => {
+		if (
+			isNaN(
+				Math.floor(
+					((finalData.testStringLength - finalData.errorLength) * 100) /
+						finalData.testStringLength
+				)
+			)
+		)
+			return;
+
+		const result = {
+			accuracy: `${Math.floor(
+				((finalData.testStringLength - finalData.errorLength) * 100) /
+					finalData.testStringLength
+			)}%`,
+			speed: `${Math.floor((finalData.testStringLength * 60) / 5 / timer)}`,
+			character: finalData.testStringLength,
+			mistake: finalData.errorLength,
+			time: timer,
+		};
+
+		const resultArray = JSON.parse(localStorage.getItem("results")) ?? [];
+
+		resultArray.push(result);
+
+		localStorage.setItem("results", JSON.stringify(resultArray));
+	}, [finalData, timer]);
 
 	return (
 		<>
